@@ -39,8 +39,13 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
 .flap-wrap.behind{z-index:1}
 .flap-face,.flap-inner{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .flap-inner{transform:rotateY(180deg)}
-.seal{position:absolute;left:50%;top:92px;margin-left:-41px;width:82px;height:82px;border-radius:50%;background:radial-gradient(circle at 32% 32%,#e0c48a,#b8944e 55%,#8a6f35);box-shadow:0 6px 20px rgba(0,0,0,.55),inset 0 3px 5px rgba(255,255,255,.3),inset 0 -4px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+.seal{position:absolute;left:50%;top:92px;margin-left:-41px;width:82px;height:82px;border-radius:50%;background:radial-gradient(circle at 32% 32%,#e0c48a,#b8944e 55%,#8a6f35);box-shadow:0 6px 20px rgba(0,0,0,.55),inset 0 3px 5px rgba(255,255,255,.3),inset 0 -4px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;animation:seal-pulse 2.4s ease-in-out infinite}
 .seal::before{content:'';position:absolute;inset:7px;border:1.5px solid rgba(255,255,255,.22);border-radius:50%}
+.seal::after{content:'';position:absolute;inset:-8px;border:2px solid rgba(255,226,160,.75);border-radius:50%;pointer-events:none;animation:seal-ripple 2.4s ease-out infinite}
+.envelope-stage.opened .seal,.envelope-stage.opened .seal::after{animation:none}
+@keyframes seal-pulse{0%,100%{transform:scale(1)}45%{transform:scale(1.06)}}
+@keyframes seal-ripple{0%{transform:scale(.9);opacity:.7}75%,100%{transform:scale(1.5);opacity:0}}
+@media(prefers-reduced-motion:reduce){.seal,.seal::after{animation:none!important}}
 .seal-inner{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:#2f2414;letter-spacing:1.5px}
 .tap-hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;opacity:.75;animation:pulse 2.2s infinite;transition:opacity .4s;z-index:10}
 .tap-hint.hide{opacity:0;pointer-events:none}
@@ -280,7 +285,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overf
       </div>
     </div>
   </div>
-  <div class="tap-hint" id="tapHint">Tap to open</div>
+  <div class="tap-hint" id="tapHint">Tap the seal to begin</div>
   <div class="full-card" id="fullCard"><div class="fc-in"><div class="fc-mono">I <span>|</span> N</div><div class="fc-names">Ishita &amp; Nitesh</div><div class="fc-hint">Scroll</div></div></div>
 </section>
 
